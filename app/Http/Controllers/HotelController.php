@@ -41,6 +41,9 @@ class HotelController extends Controller
         $hotel = new Hotel;
 
         $hotel->Hotel_name = $request->Hotel_name;
+        $hotel->Hotel_tel = $request->Hotel_tel;
+        $hotel->Hotel_taxid = $request->Hotel_taxid;
+        $hotel->Hotel_address = $request->Hotel_address;
 
         $hotel->save();
 
