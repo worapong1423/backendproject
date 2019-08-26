@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('Order_date');
             $table->string('Order_product');
             $table->bigInteger('Order_amount');
+            $table->timestamps();
         });
     }
 

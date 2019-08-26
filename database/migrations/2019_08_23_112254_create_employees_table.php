@@ -18,6 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('Employee_name');
             $table->string('Employee_username')->unique();
             $table->string('Employee_password');
+            $table->timestamps();
         });
     }
 

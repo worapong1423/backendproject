@@ -14,11 +14,12 @@ class CreateHotelsTable extends Migration
     public function up()
     {
         Schema::create('hotels', function (Blueprint $table) {
-            $table->bigIncrements('Hotel_ID');
+            $table->bigIncrements('Hotel_id');
             $table->string('Hotel_name');
             $table->string ('Hotel_tel');
             $table->string('Hotel_taxid');
             $table->string('Hotel_address');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,8 @@ class CreateHotelsTable extends Migration
      */
     public function down()
     {
+
+    
         Schema::dropIfExists('hotels');
     }
 }

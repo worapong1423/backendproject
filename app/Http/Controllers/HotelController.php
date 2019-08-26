@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use DB;
 
 class HotelController extends Controller
 {
@@ -16,6 +18,10 @@ class HotelController extends Controller
     public function index()
     {
         //
+        $hotels = Hotel::all();
+        return view('admin.hotel.index',[
+            "hotels" => $hotels,
+        ]);
         
     }
 
@@ -27,6 +33,7 @@ class HotelController extends Controller
     public function create()
     {
         //
+        return view('admin.hotel.create');
     }
 
     /**
@@ -38,14 +45,15 @@ class HotelController extends Controller
     public function store(Request $request)
     {
         //
-        $hotel = new Hotel;
-
-        $hotel->Hotel_name = $request->Hotel_name;
-        $hotel->Hotel_tel = $request->Hotel_tel;
-        $hotel->Hotel_taxid = $request->Hotel_taxid;
-        $hotel->Hotel_address = $request->Hotel_address;
-
-        $hotel->save();
+        $hotels = new Hotel();
+        $hotels->Hotel_name = Input::get("Hotel_name");
+        $hotels->Hotel_tel = Input::get("Hotel_tel");
+        $hotels->Hotel_taxid = Input::get("Hotel_taxid");
+        $hotels->Hotel_address = Input::get("Hotel_address");
+       
+        
+        $hotels->save();
+        return redirect('admin/hotel');
 
     }
 
@@ -66,9 +74,13 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($Hotel_id)
     {
         //
+        $hotels =  Hotel::findOrFail($Hotel_id);
+        return view('admin.hotel.edit',[
+            "hotels" => $hotels,
+            ]);
     }
 
     /**
@@ -78,9 +90,20 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $Hotel_id)
     {
         //
+        $Hotel_name = $request->input('Hotel_name');
+        $Hotel_tel = $request->input('Hotel_tel');
+        $Hotel_taxid = $request->input('Hotel_taxid');
+        $Hotel_address = $request->input('Hotel_address');
+        $hotels = Hotel::findOrfail($Hotel_id);
+        $hotels->Hotel_name = $Hotel_name;
+        $hotels->Hotel_tel = $Hotel_tel;
+        $hotels->Hotel_taxid = $Hotel_taxid;
+        $hotels->Hotel_address= $Hotel_address;
+        $hotels->save();
+        return redirect('admin/hotel');
     }
 
     /**
@@ -89,8 +112,11 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($Hotel_id)
     {
         //
+        $Hotels = Hotel::findOrfail($Hotel_id);
+        $Hotels->delete();
+        return redirect('admin/hotel');
     }
 }

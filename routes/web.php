@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::get('admin/hotel',"hotelController@index");
+Route::get('/admin/hotel/create',"HotelController@create");
+Route::post('/admin/hotel/create',"HotelController@store");
+Route::get('admin/hotel/{Hotel_id}/edit',"HotelController@edit");
+Route::post('admin/hotel/{Hotel_id}/edit',"HotelController@update");
+Route::post('admin/hotel/{Hotel_id}/delete',"HotelController@destroy");

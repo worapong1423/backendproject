@@ -19,6 +19,7 @@ class CreateProductPricesTable extends Migration
             $table->bigInteger('Hotel_id')->unsigned();
             $table->foreign('Hotel_id')->references('Hotel_id')->on('hotels')->onDelete('cascade');
             $table->bigInteger('PricePerUnit');
+            $table->timestamps();
         });
     }
 

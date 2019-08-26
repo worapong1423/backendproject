@@ -19,6 +19,7 @@ class CreateBillsTable extends Migration
             $table->dateTime('Bill_date');
             $table->bigInteger('Status_id')->unsigned();
             $table->foreign('Status_id')->references('Status_id')->on('status_bills')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

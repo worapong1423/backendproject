@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('Product_AmountOut')->nullable();
             $table->bigInteger('Status_id')->unsigned();
             $table->foreign('Status_id')->references('Status_id')->on('status_products')->onDelete('cascade');
+            $table->timestamps();
         });
         
     }

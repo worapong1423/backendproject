@@ -21,6 +21,7 @@ class CreateBillLogsTable extends Migration
             $table->foreign('Bill_id')->references('Bill_id')->on('bills')->onDelete('cascade');
             $table->dateTime('Update_date');
             $table->string('Update_subject');
+            $table->timestamps();
         });
     }
 

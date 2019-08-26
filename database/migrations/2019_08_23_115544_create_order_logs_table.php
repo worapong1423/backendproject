@@ -21,6 +21,7 @@ class CreateOrderLogsTable extends Migration
             $table->foreign('Order_id')->references('Order_id')->on('orders')->onDelete('cascade');
             $table->dateTime('Update_daate');
             $table->string('Update_subject');
+            $table->timestamps();
 
         });
     }
