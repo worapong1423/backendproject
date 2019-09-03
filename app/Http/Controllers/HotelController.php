@@ -6,7 +6,7 @@ use App\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
-use DB;
+
 
 class HotelController extends Controller
 {
@@ -22,7 +22,7 @@ class HotelController extends Controller
         return view('admin.hotel.index',[
             "hotels" => $hotels,
         ]);
-        
+
     }
 
     /**
@@ -50,8 +50,8 @@ class HotelController extends Controller
         $hotels->Hotel_tel = Input::get("Hotel_tel");
         $hotels->Hotel_taxid = Input::get("Hotel_taxid");
         $hotels->Hotel_address = Input::get("Hotel_address");
-       
-        
+
+
         $hotels->save();
         return redirect('admin/hotel');
 
