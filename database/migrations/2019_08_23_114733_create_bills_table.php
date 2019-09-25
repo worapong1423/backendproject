@@ -18,7 +18,7 @@ class CreateBillsTable extends Migration
             $table->string('Bill_hotelname');
             $table->dateTime('Bill_date');
             $table->bigInteger('Status_id')->unsigned();
-            $table->foreign('Status_id')->references('Status_id')->on('status_bills')->onDelete('cascade');
+            $table->foreign('Status_id')->references('Status_id')->on('status_bills')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

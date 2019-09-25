@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('Product_amountin');
             $table->bigInteger('Product_amountout')->nullable();
             $table->bigInteger('Status_id')->unsigned()->nullable();
-            $table->foreign('Status_id')->references('Status_id')->on('status_products')->onDelete('cascade');
+            $table->foreign('Status_id')->references('Status_id')->on('status_products')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
 
