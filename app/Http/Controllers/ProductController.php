@@ -16,10 +16,8 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::all();
-        return view('admin.product.index',[
-            "products" => $products,
-        ]);
+        $data = Product::get();
+        return $data;
 
     }
 
@@ -31,7 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view('admin.product.create');
+
     }
 
     /**
@@ -43,15 +41,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        $products = new Product();
-        $products->Product_name = Input::get("Product_name");
-        $products->Product_amountin = Input::get("Product_amountin");
-        $products->Product_amountout = Input::get("Product_amountout");
-
-
-
-        $products->save();
-        return redirect('admin/product');
+        $data = new product();
+        $data->fill($request->all());
+        $save = $data->save();
+        return $data;
 
     }
 
@@ -61,9 +54,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($Product_id)
     {
         //
+        $data = Product::find($Product_id);
+        return $data;
+        return view('', compact('Product_id'));
     }
 
     /**
@@ -75,10 +71,7 @@ class ProductController extends Controller
     public function edit($Product_id)
     {
         //
-        $products =  Product::findOrFail($Product_id);
-        return view('admin.product.edit',[
-            "products" => $products,
-            ]);
+
     }
 
     /**
@@ -91,15 +84,10 @@ class ProductController extends Controller
     public function update(Request $request, $Product_id)
     {
         //
-        $Product_name = $request->input('Product_name');
-        $Product_amountin = $request->input('Product_amountin');
-        $Product_amountout = $request->input('Product_amountout');
-        $products = Product::findOrfail($Product_id);
-        $products->Product_name = $Product_name;
-        $products->Product_amountin = $Product_amountin;
-        $products->Product_amountout = $Product_amountout;
-        $products->save();
-        return redirect('admin/product');
+        $data = Product::find($Product_id);
+        $data -> fill($request->all());
+        $update = $data->save();
+        return "Update";
     }
 
     /**
@@ -111,8 +99,8 @@ class ProductController extends Controller
     public function destroy($Product_id)
     {
         //
-        $products = Product::findOrfail($Product_id);
-        $products->delete();
-        return redirect('admin/product');
+        $data = Product::find($Product_idd);
+        $data->delete();
+        return $data;
     }
 }

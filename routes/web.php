@@ -21,16 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::get('admin/hotel',"HotelController@index");
-Route::get('/admin/hotel/create',"HotelController@create");
-Route::post('/admin/hotel/create',"HotelController@store");
-Route::get('admin/hotel/{Hotel_id}/edit',"HotelController@edit");
-Route::post('admin/hotel/{Hotel_id}/edit',"HotelController@update");
-Route::post('admin/hotel/{Hotel_id}/delete',"HotelController@destroy");
 
-Route::get('admin/product',"ProductController@index");
-Route::get('/admin/product/create',"ProductController@create");
-Route::post('/admin/product/create',"ProductController@store");
-Route::get('admin/product/{Product_id}/edit',"ProductController@edit");
-Route::post('admin/product/{Product_id}/edit',"ProductController@update");
-Route::post('admin/product/{Product_id}/delete',"ProductController@destroy");
+
+

@@ -19,6 +19,9 @@ class CreateHotelsTable extends Migration
             $table->string ('Hotel_tel');
             $table->string('Hotel_taxid');
             $table->string('Hotel_address');
+            $table->string('Hotel_district');
+            $table->string('Hotel_province');
+            $table->string('Hotel_email');
             $table->timestamps();
         });
     }
@@ -31,7 +34,7 @@ class CreateHotelsTable extends Migration
     public function down()
     {
 
-    
+
         Schema::dropIfExists('hotels');
     }
 }

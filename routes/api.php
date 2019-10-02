@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware(['auth:api'])->prefix('admin')->group(function () {
+    //admin route
+    Route::resource('roles', "Admin\RoleController");
+
+});
+
+Route::resource('/hotel',HotelController::class);
+Route::resource('/product',ProductController::class);
