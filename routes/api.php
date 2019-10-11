@@ -21,6 +21,11 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     Route::resource('roles', "Admin\RoleController");
 
 });
+Route::middleware('auth:api')->group(function () {
+    Route::resource('/hotel',HotelController::class);
+    Route::resource('/product',ProductController::class);
 
-Route::resource('/hotel',HotelController::class);
-Route::resource('/product',ProductController::class);
+});
+
+
+Route::resource('/test',ListController::class);
