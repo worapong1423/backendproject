@@ -19,13 +19,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     //admin route
     Route::resource('roles', "Admin\RoleController");
-
 });
 Route::middleware('auth:api')->group(function () {
-    Route::resource('/hotel',HotelController::class);
-    Route::resource('/product',ProductController::class);
-
+    Route::resource('/hotel', HotelController::class);
+    Route::resource('/product', ProductController::class);
 });
 
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('signup', 'AuthController@signup');
 
-Route::resource('/test',ListController::class);
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'AuthController@logout');
+        Route::get('user', 'AuthController@user');
+    });
+});
+
+Route::resource('/test', ListController::class);
