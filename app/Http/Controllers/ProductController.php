@@ -99,7 +99,7 @@ class ProductController extends Controller
     public function destroy($Product_id)
     {
         //
-        $data = Product::find($Product_idd);
+        $data = Product::find($Product_id);
         $data->delete();
         return $data;
     }
