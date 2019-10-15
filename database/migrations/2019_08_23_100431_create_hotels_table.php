@@ -14,7 +14,7 @@ class CreateHotelsTable extends Migration
     public function up()
     {
         Schema::create('hotels', function (Blueprint $table) {
-            $table->bigIncrements('Hotel_id');
+            $table->bigIncrements('id');
             $table->string('Hotel_name');
             $table->string ('Hotel_tel');
             $table->string('Hotel_taxid');
