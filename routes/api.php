@@ -23,6 +23,7 @@ Route::middleware(['auth:api'])->prefix('admin')->group(function () {
 Route::middleware('auth:api')->group(function () {
     Route::resource('/hotel', HotelController::class);
     Route::resource('/product', ProductController::class);
+    Route::resource('/order', OrderController::class);
 });
 
 Route::group([

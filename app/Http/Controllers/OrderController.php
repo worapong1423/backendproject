@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Hotel;
 use Illuminate\Http\Request;
+use App\Order;
 use App\Http\Controllers\Controller;
 
-
-
-class HotelController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
-        $data = Hotel::get();
-        return $data;
-
+        return Order::get();
     }
 
     /**
@@ -31,7 +26,6 @@ class HotelController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -42,11 +36,9 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $data = new Hotel();
-        $data->fill($request->all());
-        $save = $data->save();
-
+        $orders =  new Order();
+        $orders->fill($request->all());
+        $orders->save();
 
     }
 
@@ -58,10 +50,8 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        //
-        $data = Hotel::find($id);
-        return $data;
-
+        $orders =  Order::find($id);
+        return $orders;
     }
 
     /**
@@ -73,7 +63,6 @@ class HotelController extends Controller
     public function edit($id)
     {
         //
-
     }
 
     /**
@@ -85,11 +74,9 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $data = Hotel::find($id);
-        $data -> fill($request->all());
-        $data->save();
-
+        $orders =  Order::find($id);
+        $orders->fill($request->all());
+        $orders->save();
     }
 
     /**
@@ -100,10 +87,7 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $data = Hotel::find($id);
-        $data->delete();
-
-
+        $orders =  Order::find($id);
+        $orders->delete();
     }
 }

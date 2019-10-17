@@ -22,6 +22,7 @@ class CreateHotelsTable extends Migration
             $table->string('Hotel_district');
             $table->string('Hotel_province');
             $table->string('Hotel_email');
+            $table->string('Hotel_zipcode');
             $table->timestamps();
         });
     }

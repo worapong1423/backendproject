@@ -16,6 +16,7 @@ class Hotel extends Model
         'Hotel_address',
         'Hotel_district',
         'Hotel_province',
-        'Hotel_email'
+        'Hotel_email',
+        'Hotel_zipcode',
     ];
 }
