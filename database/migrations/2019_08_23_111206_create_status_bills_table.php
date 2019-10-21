@@ -14,7 +14,7 @@ class CreateStatusBillsTable extends Migration
     public function up()
     {
         Schema::create('status_bills', function (Blueprint $table) {
-            $table->bigIncrements('Status_id');
+            $table->bigIncrements('id');
             $table->string('Status_name');
             $table->timestamps();
         });

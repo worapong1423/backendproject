@@ -14,11 +14,11 @@ class CreateBillLogsTable extends Migration
     public function up()
     {
         Schema::create('bill_logs', function (Blueprint $table) {
-            $table->bigIncrements('Log_id');
+            $table->bigIncrements('id');
             $table->bigInteger('Employee_id')->unsigned();
-            $table->foreign('Employee_id')->references('Employee_id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('Bill_id')->unsigned();
-            $table->foreign('Bill_id')->references('Bill_id')->on('bills')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Bill_id')->references('id')->on('bills')->onDelete('cascade')->onUpdate('cascade');
             $table->dateTime('Update_date');
             $table->string('Update_subject');
             $table->timestamps();

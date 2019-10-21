@@ -14,8 +14,9 @@ class CreateProductPricesTable extends Migration
     public function up()
     {
         Schema::create('product_prices', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('Product_id')->unsigned();
-            $table->foreign('Product_id')->references('Product_id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('Hotel_id')->unsigned();
             $table->foreign('Hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('PricePerUnit');

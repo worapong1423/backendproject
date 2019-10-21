@@ -14,11 +14,11 @@ class CreateBillsTable extends Migration
     public function up()
     {
         Schema::create('bills', function (Blueprint $table) {
-            $table->bigIncrements('Bill_id');
+            $table->bigIncrements('id');
             $table->string('Bill_hotelname');
             $table->dateTime('Bill_date');
             $table->bigInteger('Status_id')->unsigned();
-            $table->foreign('Status_id')->references('Status_id')->on('status_bills')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Status_id')->references('id')->on('status_bills')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
