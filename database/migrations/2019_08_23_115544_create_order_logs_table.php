@@ -15,12 +15,12 @@ class CreateOrderLogsTable extends Migration
     {
         Schema::create('order_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('Employee_id')->unsigned();
-            $table->foreign('Employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('Order_id')->unsigned();
-            $table->foreign('Order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
-            $table->dateTime('Update_date');
-            $table->string('Update_subject');
+            $table->bigInteger('employee_id')->unsigned();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->dateTime('update_date');
+            $table->string('update_subject');
             $table->timestamps();
 
         });

@@ -15,12 +15,12 @@ class CreateBillLogsTable extends Migration
     {
         Schema::create('bill_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('Employee_id')->unsigned();
-            $table->foreign('Employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('Bill_id')->unsigned();
-            $table->foreign('Bill_id')->references('id')->on('bills')->onDelete('cascade')->onUpdate('cascade');
-            $table->dateTime('Update_date');
-            $table->string('Update_subject');
+            $table->bigInteger('employee_id')->unsigned();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('bill_id')->unsigned();
+            $table->foreign('bill_id')->references('id')->on('bills')->onDelete('cascade')->onUpdate('cascade');
+            $table->dateTime('update_date');
+            $table->string('update_subject');
             $table->timestamps();
         });
     }

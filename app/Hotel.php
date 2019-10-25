@@ -10,13 +10,17 @@ class Hotel extends Model
 
     protected $table = 'hotels';
     protected $fillable =[
-        'Hotel_name',
-        'Hotel_tel',
-        'Hotel_taxid',
-        'Hotel_address',
-        'Hotel_district',
-        'Hotel_province',
-        'Hotel_email',
-        'Hotel_zipcode',
+        'name',
+        'tel',
+        'taxid',
+        'address',
+        'district',
+        'province',
+        'email',
+        'zipcode',
     ];
+
+    public  function rates(){
+        return $this->hasMany(Rate::class);
+    }
 }

@@ -11,20 +11,18 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class TrainingFormService extends BaseService
+class RateService extends BaseService
 {
 
-    public function getRate()
+    public function getRate($hotelId)
     {
-        $query = Rate::query();
-        $query->with('hotel');
-        $forms = $query->get();
-        return $forms;
+        $hotel = Hotel::find($hotelId);
+        return $hotel->rates;
     }
 
-    public function saveRate($form)
+    public function saveRate($form,$id)
     {
-        $hotel = (new \App\Rate)->hotel();
+        $hotel = Hotel::find($id);
         $rate =  new Rate();
         $rate->fill($form);
         $rate->hotel()->associate($hotel);
@@ -32,17 +30,14 @@ class TrainingFormService extends BaseService
         return $rate;
     }
 
-    public function updateRateById($id,$form)
+    public function updateRateById($form)
     {
-        $data = Rate::find($id);
-        if($data){
-            $data->fill($form);
-            $save = $data->save();
-            return $data;
-        }else {
-            abort(404,"Error");
-        }
-
+        foreach ($form as $rate) {
+            $r = Rate::find($rate['id']);
+            $r->fill($rate);
+            $r->save();
+      }
+        return "OK";
     }
 
     public function  getRateById($id){

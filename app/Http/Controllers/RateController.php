@@ -6,6 +6,7 @@ use App\Hotel;
 use App\Rate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Http\Service\RateService;
 
 class RateController extends Controller
 {
@@ -19,10 +20,10 @@ class RateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($hotelId)
     {
         //
-        return $this->service->getRate();
+        return $this->service->getRate($hotelId);
     }
 
     /**
@@ -41,10 +42,10 @@ class RateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$hotelId)
     {
         //
-        return $this->service->saveRate($request->all());
+        return $this->service->saveRate($request->all(),$hotelId);
     }
 
     /**
@@ -79,10 +80,12 @@ class RateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
-        return $this->service->updateRateById($id, $request->all());
+        return $this->service->updateRateById($request->get(
+            'rates'
+        ));
     }
 
     /**
