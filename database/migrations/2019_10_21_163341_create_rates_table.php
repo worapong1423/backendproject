@@ -16,8 +16,8 @@ class CreateRatesTable extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('hotel_id');
-            $table->string('product_name');
-            $table->string('product_price');
+            $table->string('name');
+            $table->string('price');
             $table->timestamps();
         });
     }

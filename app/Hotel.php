@@ -23,4 +23,8 @@ class Hotel extends Model
     public  function rates(){
         return $this->hasMany(Rate::class);
     }
+
+    public  function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

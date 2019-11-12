@@ -10,8 +10,8 @@ class Rate extends Model
     //
     protected $table = 'rates';
     protected $fillable =[
-        'product_name',
-        'product_price',
+        'name',
+        'price',
     ];
 
     public  function hotel(){

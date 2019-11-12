@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\OrderService;
 use Illuminate\Http\Request;
 use App\Order;
-use App\Http\Controllers\Controller;
+use App\Hotel;
+use Illuminate\Support\Facades\Input;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->service = new OrderService();
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($hotelId)
     {
-        return Order::get();
+        return $this->service->getOrder($hotelId);
     }
 
     /**
@@ -34,11 +40,10 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$hotelId)
     {
-        $orders =  new Order();
-        $orders->fill($request->all());
-        $orders->save();
+        return $this->service->saveOrder($request->all(),$hotelId);
+
 
     }
 
@@ -50,8 +55,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $orders =  Order::find($id);
-        return $orders;
+        return $this->service->getOrderById($id);
+
     }
 
     /**
@@ -63,6 +68,7 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        return $this->service->getOrderById($id);
     }
 
     /**
@@ -74,9 +80,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $orders =  Order::find($id);
-        $orders->fill($request->all());
-        $orders->save();
+
     }
 
     /**
@@ -87,7 +91,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $orders =  Order::find($id);
-        $orders->delete();
+        return $this->service->destroyOrderById($id);
     }
 }

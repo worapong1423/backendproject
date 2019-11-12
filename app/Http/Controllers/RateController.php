@@ -94,7 +94,7 @@ class RateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($hotelId,$id)
     {
         //
         return $this->service->destroyRateById($id);

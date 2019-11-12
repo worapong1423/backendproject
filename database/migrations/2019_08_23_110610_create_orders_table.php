@@ -15,10 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->dateTime('date');
-            $table->string('product');
-            $table->bigInteger('amount');
+            $table->bigInteger('hotel_id');
+            $table->bigInteger('receiver_id')->nullable();
+            $table->text('receive_sign')->nullable();
+            $table->string('customer_receive_name')->nullable();
+            $table->bigInteger('sender_id')->nullable();
+            $table->text('send_sign')->nullable();
+            $table->string('customer_send_name')->nullable();
+            $table->bigInteger('status_id')->nullable();
             $table->timestamps();
         });
     }
