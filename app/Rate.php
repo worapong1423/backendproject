@@ -17,4 +17,7 @@ class Rate extends Model
     public  function hotel(){
         return $this->belongsTo(Hotel::class);
     }
+    public  function ordersdetail(){
+        return $this->hasMany(Orderdetail::class);
+    }
 }

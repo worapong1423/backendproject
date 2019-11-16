@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('hotel_id');
             $table->bigInteger('receiver_id')->nullable();
-            $table->text('receive_sign')->nullable();
+            $table->longText('receive_sign')->nullable();
             $table->string('customer_receive_name')->nullable();
             $table->bigInteger('sender_id')->nullable();
             $table->text('send_sign')->nullable();

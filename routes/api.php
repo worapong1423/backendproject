@@ -19,12 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware(['auth:api'])->prefix('admin')->group(function () {
     //admin route
     Route::resource('roles', "Admin\RoleController");
+    Route::resource('users', "Admin\UserController");
+
 });
 Route::middleware('auth:api')->group(function () {
     Route::resource('hotel.order', OrderController::class);
     Route::resource('hotel.rate', RateController::class);
     Route::resource('hotel', HotelController::class);
     Route::resource('shop', ShopController::class);
+    Route::resource('order.orderdetail', OrderdetailController::class);
 
 
 });
