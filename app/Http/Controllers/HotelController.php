@@ -46,6 +46,7 @@ class HotelController extends Controller
         $data = new Hotel();
         $data->fill($request->all());
         $save = $data->save();
+        return $data;
 
 
     }

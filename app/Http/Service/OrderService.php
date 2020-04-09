@@ -34,7 +34,6 @@ class OrderService extends BaseService
         $order->user()->associate($user);
         $order->save();
 
-
         /*$orderdetail =  new Orderdetail();
         foreach ($form as $detail){
             $rate = Rate::find($id);
