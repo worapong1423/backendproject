@@ -27,6 +27,7 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('hotel.rate', RateController::class);
     Route::resource('hotel', HotelController::class);
     Route::resource('shop', ShopController::class);
+    Route::resource('bill', BillController::class);
     Route::resource('order.orderdetail', OrderdetailController::class);
 
 

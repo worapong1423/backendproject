@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Service\OrderService;
 use Illuminate\Http\Request;
 use App\Order;
-use App\Hotel;
-use Illuminate\Support\Facades\Input;
 
-class OrderController extends Controller
+class BillController extends Controller
 {
-    public function __construct()
-    {
-        $this->service = new OrderService();
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($hotelId)
+    public function index()
     {
-        return $this->service->getOrder($hotelId);
+        //
+        $data = Order::with('hotel')->get();
+        return $data;
     }
 
     /**
@@ -40,11 +35,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$hotelId)
+    public function store(Request $request)
     {
-        return $this->service->saveOrder($request->all(),$hotelId);
-
-
+        //
     }
 
     /**
@@ -53,10 +46,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,$orderId)
+    public function show($id)
     {
-        return $this->service->getOrderById($id,$orderId);
-
+        //
     }
 
     /**
@@ -77,9 +69,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $hotelId,$orderID)
+    public function update(Request $request, $id)
     {
-        return $this->service->updateOrderById($request->all(),$hotelId,$orderID);
+        //
     }
 
     /**
@@ -88,8 +80,8 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id,$orderid)
+    public function destroy($id)
     {
-        return $this->service->destroyOrderById($id,$orderid);
+        //
     }
 }

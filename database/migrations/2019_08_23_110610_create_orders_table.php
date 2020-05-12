@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->text('send_sign')->nullable();
             $table->string('customer_send_name')->nullable();
             $table->bigInteger('status_id')->nullable()->default(1);
+            $table-string('order_code')->nullable();
             $table->timestamps();
         });
     }

@@ -24,7 +24,6 @@ class OrderdetailService extends BaseService
     }
 
     public function saveOrderdetail($form,$id){
-
         for($i=0;$i<count($form);$i++){
             $orderdetail =  new Orderdetail();
             $order = Order::find($id);
@@ -35,10 +34,21 @@ class OrderdetailService extends BaseService
             $orderdetail->rate =  $form[$i]['rate'];
             $orderdetail->order()->associate($order);
             $orderdetail->save();
-            return  $orderdetail;
         }
 
      //   return $form[0]['amountin'];
+    }
+    public function updateOrderdetail($form,$id){
+        $orderdetail = Orderdetail::where("order_id",$id)->get();
+        $order = Order::find($id);
+        for($i=0;$i<count($form);$i++){
+            // $orderdetail[i]->product_id =  $form[$i]['product_id'];
+            // $orderdetail[i]->amountin =  $form[$i]['amountin'];
+            // $orderdetail[i]->amountout =  $form[$i]['amountout'];
+            // $orderdetail[i]->rate =  $form[$i]['rate'];
+            $detail = $orderdetail[$i]->fill($form[$i]);
+            $detail->save();
+        }
     }
 
 

@@ -24,4 +24,7 @@ class Order extends Model
     public  function ordersdetail(){
         return $this->hasMany(Orderdetail::class);
     }
+    public  function usersend(){
+        return $this->belongsTo(User::class,'sender_id');
+    }
 }
