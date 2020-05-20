@@ -15,7 +15,7 @@ class BillController extends Controller
     public function index()
     {
         //
-        $data = Order::with('hotel')->get();
+        $data = Order::with('hotel')->where("status_id",3)->get();
         return $data;
     }
 

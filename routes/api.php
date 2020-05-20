@@ -44,6 +44,10 @@ Route::group([
     ], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+        Route::get('getalluser', 'AuthController@getAllUser');
+        Route::post('getuserbyid', 'AuthController@getUserByID');
+        Route::put('updateuser', 'AuthController@updateUser');
+        Route::post('deleteuser', 'AuthController@deleteUser');
     });
 });
 

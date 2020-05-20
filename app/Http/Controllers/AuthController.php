@@ -19,14 +19,17 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
+            'email' => 'required|string|unique:users',
+            'password' => 'required|string|confirmed',
+            'usertype' => 'required',
         ]);
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
         ]);
+        $user->usertype = $request['usertype'];
+        // echo $user;
         $user->save();
         return response()->json([
             'message' => 'Successfully created user!'
@@ -46,7 +49,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
+            'email' => 'required|string',
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
@@ -92,5 +95,30 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+    public function getAllUser()
+    {
+        $data = User::where("usertype", '!=' , null)->where("usertype", '!=' , 1)->get();
+        return $data;
+    }
+    public function getUserByID(Request $request)
+    {
+        $data = User::find($request->id);
+        return $data;
+    }
+    public function updateUser(Request $request)
+    {
+        $data = User::find($request->id);
+
+        $data -> fill($request->all());
+        $data->password = bcrypt($request->password);
+        $data->save();
+        return $data;
+    }
+    public function deleteUser(Request $request)
+    {
+        $data = User::find($request->id);
+        $data->delete();
+        return $data;
     }
 }
