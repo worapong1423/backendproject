@@ -19,7 +19,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|string|unique:users',
+            'email' => 'required|email|string|unique:users',
             'password' => 'required|string|confirmed',
             'usertype' => 'required',
         ]);
@@ -49,7 +49,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string',
+            'email' => 'required|email|string',
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
@@ -108,8 +108,12 @@ class AuthController extends Controller
     }
     public function updateUser(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|string',
+            'password' => 'required|string|confirmed',
+        ]);
         $data = User::find($request->id);
-
         $data -> fill($request->all());
         $data->password = bcrypt($request->password);
         $data->save();

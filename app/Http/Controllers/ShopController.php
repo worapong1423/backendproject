@@ -77,6 +77,9 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'email' => 'required|email|string',
+        ]);
         //
         $data = Shop::find($id);
         $data -> fill($request->all());
